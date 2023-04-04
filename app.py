@@ -59,9 +59,10 @@ def send_alert(data):
 
     if status == 'resolved':  # 告警恢复
         send_data = {
-            "msgtype": "text",
-            "text": {
-                "content": "报警 %s 已恢复" % alert_name
+            "msgtype": "markdown",
+            "markdown": {
+                "title": "alertmanager",
+                "text": "### <font color=\"#32CD32\"> 告警恢复 </font>"+'\n\n'+ "报警 %s 已恢复" % alert_name
             }
         }
     else:
@@ -75,7 +76,7 @@ def send_alert(data):
             "msgtype": "markdown",
             "markdown": {
                 "title": title,
-                "text": title + "\n" + "![](https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/prometheus-recording-rules.png)\n" + _mark_item(alerts[0]) + "\n" + "[点击查看完整信息](" + external_url + ")\n"
+                "text": "### <font color=\"#FF0000\"> 告警通知 </font>" +'\n\n' + title + "\n" + _mark_item(alerts[0]) + "\n" ")\n"
             }
         }
 
